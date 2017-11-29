@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private MyDatabaseHelper dbHelper;
 
     //upload to github
+    //database
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
