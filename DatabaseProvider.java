@@ -151,8 +151,8 @@ public class DatabaseProvider extends ContentProvider {
                 break;
 
             case CATEGORY_ITEM:
-                String categroyId = uri.getPathSegments().get(1);
-                cursor = db.query("Category", projection, "id = ?", new String[] { categroyId }
+                String categoryId = uri.getPathSegments().get(1);
+                cursor = db.query("Category", projection, "id = ?", new String[] { categoryId }
                 , null, null, sortOrder);
                 break;
             default:
