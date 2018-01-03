@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -57,16 +58,46 @@ public class MainActivity extends AppCompatActivity {
                         String name = cursor.getString(cursor.getColumnIndex("name"));
                         String author = cursor.getString(cursor.getColumnIndex("author"));
                         int pages = cursor.getInt(cursor.getColumnIndex("pages"));
+                        double price = cursor.getDouble(cursor.getColumnIndex("price"));
+                        Log.d("MainActivity", "book name is " + name);
 
 
 
                     }
+                    cursor.close();
                 }
 
             }
         });
 
 
+        Button updateData = (Button) findViewById(R.id.update_data);
+        updateData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //update the data
+                Uri uri = Uri.parse("com.bignerdranch.android.databasetest.provider/book" + newId);
+                ContentValues values = new ContentValues();
+                values.put("name", "A Storm of Swords");
+                values.put("pages", 1215);
+                values.put("price", 24.12);
+                getContentResolver().update(uri, values, null, null);
+
+
+
+            }
+        });
+
+
+
+        Button deleteData = (Button) findViewById(R.id.delete_data);
+        deleteData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("com.bignerdranch.android.databasetest.provider/book" + newId);
+                getContentResolver().delete(uri, null, null);
+            }
+        });
 
         /*
         //add new data  CRUD OPERATIONS
